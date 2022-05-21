@@ -1,15 +1,20 @@
 /*
  * Цикл for
  */
-
-// for (let i = 0; i < 10; i += 1) {
-//   console.log(i);
+// for (инициализация; условие; пост - выражение) {
+  // тело цикла
 // }
 
+// for (let i = 0; i < 10; i += 1) {
+  // тело цикла
+//   console.log(i);
+// }
+// выполняется условие после окончания цикла
 // console.log('qweqwe');
 
+
 /*
- * Pre-increment и Post-increment
+ * Pre-increment и Post-increment(не использовать)
  */
 
 // for (let i = 0; i < 10; i++) {
