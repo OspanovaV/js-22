@@ -10,3 +10,14 @@
 // quantity = Number(quantity);
 // console.log(quantity);
 // console.log(typeof quantity);
+
+
+
+// автопроверка
+
+// const pricePerItem = 3500;
+// const orderedQuantity = 4;
+
+// const totalPrice = pricePerItem * orderedQuantity;
+// console.log(totalPrice);
+//14000

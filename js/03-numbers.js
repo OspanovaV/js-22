@@ -12,12 +12,20 @@ let elementHeight = '200.74px';
 
 /*
  * - Метод число.toFixed(digits)
- * - Матрёшки на примере  console.log(Number(число.toFixed(digits)))
+ * - Матрёшки(записать одной строкой) на примере  console.log(Number(число.toFixed(digits)))
  */
 let salary = 1300.16472;
+
+// salary = salary.toFixed(2);
+//salary = Number(salary);
+
+// либо вложить функции друг в друга
 // salary = Number(salary.toFixed(2));
 
 // console.log(salary);
+
+// либо вместе с выводом в консоль
+// console.log(Number(salary.toFixed(2)));
 
 /*
  * - Приведение (преобразование) к числу с Number(value)
@@ -63,7 +71,7 @@ let value = 'Эту строку невозможно привести к чис
 // console.log(result);
 
 /*
- * Генерим псевдослучайные числа
+ * Генерим псевдослучайные числа и округляем до целого числа
  * - Math.random()
  * - Math.round()
  */
