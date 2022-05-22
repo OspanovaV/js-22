@@ -31,14 +31,14 @@ if (totalSpent >= 100 && totalSpent < 1000) {
 } else {
   console.log('Не партнёр, скидка 0%');
 }
-
+// отнимаем скидку
 payment -= payment * discount;
 // payment = payment - payment * discount;
 
 console.log(
   `Оформляем заказ на сумму ${payment} со скидкой ${discount * 100}%`,
 );
-
+// потраченная общая сумма
 totalSpent += payment;
 
 console.log(`Общая сумма потраченого в магазине: ${totalSpent}`);
