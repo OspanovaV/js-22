@@ -15,8 +15,10 @@ const friends = ['Mango', 'Poly', 'Kiwi', 'Ajax'];
 
 // string = string.slice(0, string.length - 1);
 
-const string = friends.join(',');
-console.log(friends);
-console.log(string);
+
+/*лучший вариант с использованием .join('') он не изменяет массив, */
+const string = friends.join(','); /*массив и сшиваем и между словами ставим запятую*/
+console.log(string); /*выводим новую сшитую строку*/
+// console.log(friends);/*старая строка остается без изменений*/
 
 // Должно получиться 'Mango,Poly,Kiwi,Ajax'

@@ -20,16 +20,18 @@ let total = 0;
 //   total += number;
 // }
 // }
-
+// так как не нужно перезаписывать элементы, используем for...of
 // for (const number of numbers) {
 //   // console.log(number);
 
+// проверить элемент на чётность
 //   if (number % 2 === 0) {
 //     console.log(`${number} - четное!!!!`);
 //     total += number;
 //   }
 // }
 
+// логика от обратного: если не чётное то пропускаем
 for (const number of numbers) {
   if (number % 2 !== 0) {
     console.log('Эту итерацию нужно пропустить', number);
@@ -41,3 +43,6 @@ for (const number of numbers) {
 }
 
 console.log('Total: ', total);
+
+
+
