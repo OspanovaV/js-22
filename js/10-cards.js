@@ -21,10 +21,10 @@ console.table(cards);
  */
 
 // const cardToRemove = 'Карточка-3';
-// const index = cards.indexOf(cardToRemove);
-// console.log(index);
+// const index = cards.indexOf(cardToRemove); /*находим индекс элемента в массиве*/
+// console.log(index); 
 
-// cards.splice(index, 1);
+// cards.splice(index, 1); /* удаляем 1карточку:index(с каким индексом элемент), и количество элементов*/
 
 // console.table(cards);
 
