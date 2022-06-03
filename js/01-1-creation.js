@@ -81,10 +81,11 @@ const signupData = {
 
 //  <input name="color" value="tomato" >
 
-const inputName = 'color';
-const inputValue = 'tomato';
+const inputName = 'color'; /**вытаскиваем имя input в переменную inputName */
+const inputValue = 'tomato';/**вытаскиваем значение input в переменную inputValue */
 
 const colorPickerData = {
+  // в квадратных скобках указываем ключ-переменную, значение переменной станет ключем
   [inputName]: inputValue,
 };
 
@@ -92,15 +93,16 @@ const colorPickerData = {
 
 /*
  * Ссылочный тип {} === {}
+(сложный тип) два обьекта равны между собой если у них одна ссылка на одно место в памяти
  */
 
 // console.log({ a: 1 } === { a: 1 });
 // console.log([] === []);
 
 // const a = { x: 1, y: 2 };
-// const b = a;
+// const b = a; /**ссылка на обьект */
 
-// console.log(b === a);
+// console.log(b === a); /**значит два обьекта равны*/
 
 // a.hello = 100;
 // b.hello = 150;
@@ -125,3 +127,5 @@ const colorPickerData = {
 // fn.hello = ';)';
 
 // console.dir(fn.hello);
+
+
