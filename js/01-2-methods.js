@@ -18,27 +18,28 @@ const playlist = {
 
     this.name = newName;
   },
+  // метод добавить трек
   addTrack(track) {
     this.tracks.push(track);
   },
   updateRating(newRating) {
-    this.rating = newRating;
+    this.rating = newRating; //получить доступ для изменения свойства ключа rating 
   },
   getTrackCount() {
-    return this.tracks.length;
+    return this.tracks.length;//возвращает текущую длину массива с количеством треков(вычисляемое свойство просчета длины массива)
   },
 };
 
-console.log(playlist.getTrackCount());
+console.log(playlist.getTrackCount());//если вызываем сначала, то получаем начальное количество треков(3)
 
 playlist.changeName('Новое имя');
 
-playlist.addTrack('новый трек 1');
+playlist.addTrack('новый трек 1');//вызываем и добавляем новый трек
 console.log(playlist.getTrackCount());
 
 playlist.addTrack('новый трек 2');
-console.log(playlist.getTrackCount());
+console.log(playlist.getTrackCount());//а если вызываем после добавления треков, то получаем конечное количество треков
 
-playlist.updateRating(4);
+playlist.updateRating(4); //вызываем и даем новый рейтинг
 
 console.log(playlist);
