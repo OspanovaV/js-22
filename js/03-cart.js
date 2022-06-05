@@ -16,13 +16,13 @@
 
 const cart = {
   items: [],
-  getItems() {},
-  add(product) {},
+  getItems() {}, //метод получения свойств продукта
+  add(product) {}, //метод добавления продукта
   remove(productName) {},
-  clear() {},
-  countTotalPrice() {},
-  increaseQuantity(productName) {},
-  decreaseQuantity(productName) {},
+  clear() {}, //очистить корзину
+  countTotalPrice() {}, //возвращает общую цену товаров в корзине
+  increaseQuantity(productName) {},// увеличить количество товаров в корзине
+  decreaseQuantity(productName) {},// увменьшить количество товаров в корзине
 };
 
 // console.table(cart.getItems());
