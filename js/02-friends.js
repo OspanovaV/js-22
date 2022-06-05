@@ -19,11 +19,10 @@ const findFriendByName = function (allFriends, friendName) {
     // console.log(friend);
     // console.log(friend.name);
 
-    if (friend.name === friendName) {
+    if (friend.name === friendName) { /* свойство name в обьекте friend равно параметру friendName*/
       return 'НАШЛИ!!!';
     }
   }
-
   return 'НЕ НАШЛИ :(';
 };
 
@@ -40,7 +39,7 @@ const getAllNames = function (allFriends) {
   for (const friend of allFriends) {
     console.log(friend.name);
 
-    names.push(friend.name);
+    names.push(friend.name);//пушим друзей 
   }
 
   return names;
@@ -52,54 +51,58 @@ const getAllNames = function (allFriends) {
  * Получаем имена только друзей которые онлайн
  */
 const getOnlineFriends = function (allFriends) {
-  const onlineFriends = [];
+  const onlineFriends = [];//пустой массив куда будем пушить
 
   for (const friend of allFriends) {
     console.log(friend);
     console.log(friend.online);
 
-    if (friend.online) {
-      onlineFriends.push(friend);
+    if (friend.online) { //проверка(если друг онлайн тоже самое что friend.online === true(були так не расписываем))
+      onlineFriends.push(friend);// добавляем весь обьект друга
     }
   }
-
-  return onlineFriends;
+  return onlineFriends; //возвращаем всех друзей, которые онлайн
 };
 
 // console.log(getOnlineFriends(friends));
 
+
+/*
+* Получаем имена только друзей которые офлайн
+*/
+
 const getOfflineFriends = function (allFriends) {
   const offlineFriends = [];
 
-  for (const friend of allFriends) {
+  for (const friend of allFriends) {//получаем доступ к каждому другу
     console.log(friend.online);
 
-    if (!friend.online) {
+    if (!friend.online) { //если друг не онлайн(false)
       offlineFriends.push(friend);
     }
   }
-
   return offlineFriends;
 };
 
 // console.log(getOfflineFriends(friends));
 
-// создать 2 массива онлайн и офлайн?
-// если тру - в первый, если нет - во второй
+/* 
+*создать 2 массива онлайн и офлайн (друзей по статусу)
+*если тру - в первый, если нет - во второй
+*/
 
 const getFriendsByStatus = function (allFriends) {
-  const friendsByStatus = {
+  const friendsByStatus = { //создаем переменную и в ней два пустых массива
     online: [],
     offline: [],
   };
 
-  for (const friend of allFriends) {
-    if (friend.online) {
-      friendsByStatus.online.push(friend);
-      continue;
+  for (const friend of allFriends) {//перебираем (получаем доступ к друзьям)
+    if (friend.online) { //если друг онлайн
+      friendsByStatus.online.push(friend); //пушим в пустой массив online: []
+      continue; //иди на следующую итерацию
     }
-
-    friendsByStatus.offline.push(friend);
+    friendsByStatus.offline.push(friend); //если нет то пушим в offline: []
 
     // const key = friend.online ? 'online' : 'offline';
     // friendsByStatus[key].push(friend);
