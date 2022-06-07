@@ -9,13 +9,13 @@ const profile = {
     likes: 1308,
   },
 };
-
+//сделаем деструктуризацию
 const makeProfileMarkup = function (userProfile) {
   const {
-    avatar = 'https://i.pravatar.cc/400?img=6',
+    avatar = 'https://i.pravatar.cc/400?img=6',//свойство с дефолтным значением(на случай если основное не загрузится)
     name,
     tag,
-    location = 'Planet Earth',
+    location = 'Planet Earth',//еще одно дефолтное вставится, если вдруг не указано место проживания 
     stats: { followers, views, likes },
   } = userProfile;
 

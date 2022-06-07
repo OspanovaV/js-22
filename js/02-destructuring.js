@@ -15,8 +15,8 @@ const playlist = {
 //   rating,
 //   tracks,
 //   name,
-//   trackCount: numberOfTracks = 0,
-//   author = 'user',
+//   trackCount: numberOfTracks = 0, //изменение имени переменной
+//   author = 'user', //Значение по умолчанию
 // } = playlist;
 
 // console.log(numberOfTracks);
@@ -42,7 +42,7 @@ const playlist = {
 //   name,
 //   tag,
 //   location,
-//   stats: { followers, views, likes },
+//   stats: { followers, views, likes }, //глубокая деструктуризация
 // } = profile;
 
 // console.log(name, tag, location, avatar, followers, views, likes);
@@ -67,12 +67,12 @@ const authors = {
 const entries = Object.entries(authors);
 
 // console.log(entries);
-
+// уровень3(супер сокращенная запись)
 // for (const [name, rating] of entries) {
-//   // ур2
+//   // уровень2
 //   // const [name, rating] = entry;
 
-//   // ур1
+//   // уровень1
 //   // const name = entry[0];
 //   // const rating = entry[1];
 
@@ -80,8 +80,10 @@ const entries = Object.entries(authors);
 // }
 
 /*
- * Операция rest (сбор)
+ * Операция rest (сбор) вытащить из обьекта определенные 
+свойства в локальные переменные, оставшиеся собрать другой обьект
  */
+
 // const profile = {
 //   name: 'Jacques Gluke',
 //   tag: 'jgluke',
@@ -126,3 +128,4 @@ const profile = {
 };
 
 showProfileInfo(profile);
+

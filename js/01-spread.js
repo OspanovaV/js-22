@@ -95,3 +95,9 @@ const finalSettings = {
 };
 //получаем
 console.log(finalSettings); //(theme: 'light', showNotifications: false, hideSidebar: true)
+
+
+const first = { propA: 5, propB: 10 };
+const second = { propC: 15 };
+const third = { propC: 20,...second, ...first };
+console.log(third);
