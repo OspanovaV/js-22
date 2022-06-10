@@ -11,12 +11,14 @@
 //     return a + b + c;
 // };
 
-// const addArrow = (a, b, c) => {
+// const addArrow = (a, b, c) => { //стрелочная ф-ция с явным возвратом
 //     return a + b + c;
 // };
+// const addArrow = (a, b, c) => a + b + c; //та же ф-ция с неявным возвратом
 
 // console.log(add(5, 10, 15));
 // console.log(addArrow(5, 10, 15));
+
 
 // const fnA = function () {
 //   return {
@@ -26,9 +28,12 @@
 
 // console.log(fnA());
 
-// const arrowFnA = () => ({ arrowA: 5 });
+//запишем функцию выше через стрелочеую функцию
+// const arrowFnA = () => ({ arrowA: 5 }); //вернем обьект
 
 // console.log(arrowFnA());
+
+
 
 const filter = (array, test) => {
     const filteredArray = [];
