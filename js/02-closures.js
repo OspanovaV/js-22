@@ -1,4 +1,5 @@
 /*
+  * Замыкание
  * Функция результатом своей работы может возвращать другую функцию.
  *
  * Возвращаемая функция во время вызова будет иметь доступ
@@ -78,27 +79,28 @@ const makeSheff = function (name) {
 // const withDecimals = Number(floatingPoint.toFixed(2)); // 3.46
 
 // const rounder = function (number, places) {
-//     return Number(number.toFixed(places));
+//     return Number(number.toFixed(places)); //приводим к количеству знаков(places) после запятой
 // };
 
-// console.log(rounder(3.4567, 2));
-// console.log(rounder(3.4567, 3));
-// console.log(rounder(5.1234, 2));
-// console.log(rounder(3.4567, 3));
+// console.log(rounder(3.4567, 2)); //3.46
+// console.log(rounder(3.4567, 3));//3.457
+// console.log(rounder(5.1234, 2));//5.12
+// console.log(rounder(3.4567, 3)); //3.457
 
-const rounder = function (places) {
-    return function (number) {
-        return Number(number.toFixed(places));
+//используем замыкание
+const rounder = function (places) { //эта ф-ция дает количество знаков после запятой
+    return function (number) {   //эта ф-ция получает само число
+        return Number(number.toFixed(places)); //и возвращает число
     };
 };
 
-// const rounder2 = rounder(2);
-// const rounder3 = rounder(3);
+// const rounder2 = rounder(2); //эта ф-ция округляет до 2х знаков
+// const rounder3 = rounder(3); //эта ф-ция округляет до 3х знаков
 
 // console.dir(rounder2);
 // console.dir(rounder3);
 
-// console.log(rounder2(3.4567));
+// console.log(rounder2(3.4567)); //вызываем ф-цию,передаем число и получаем нужное(3.46)
 // console.log(rounder2(5.4512312312367));
 // console.log(rounder3(3.4567));
 // console.log(rounder2(5.1234));
@@ -110,11 +112,11 @@ const rounder = function (places) {
  */
 
 const salaryManagerFactory = function (employeeName, baseSalary = 0) {
-    let salary = baseSalary;
+    let salary = baseSalary;//скрываем зарплату в этой функции, как отдельную переменную
 
-    return {
+    return { //возвращаем обьект функции, которая меняет
         raise(amount) {
-            if (amount > 1000) {
+            if (amount > 1000) { //если больше 1000
                 return 'Ты офигел?';
             }
 
@@ -130,7 +132,7 @@ const salaryManagerFactory = function (employeeName, baseSalary = 0) {
 };
 
 const salaryManager = salaryManagerFactory('Mango', 5000);
-
+//можем использовать методы(.current, .raise, которые внутри ф-ции) для доступа к данным в замыкании
 console.log(salaryManager.current());
 
 console.log(salaryManager.raise(10000000));
