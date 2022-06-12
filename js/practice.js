@@ -8,25 +8,25 @@
 // // }
 
 // // Метод перебирання forEach
-// numbers.forEach(function (number, index) {
+// numbers.forEach(function (number, index) { //функция может принимать три аргумента(элемент массива, индекс, и массив)
 //   console.log(`Індекс ${index}, значення ${number}`);
 // });
 
-// numbers.forEach(logElement);
+// numbers.forEach(logElement); //запишем сокращенный вариант
 // numbers.forEach(showElement);
-// // const numbers = [5, 10, 15, 20, 25];
-// // 1) number = 5, index = 0, arr = [5, 10, 15, 20, 25]
-// // 2) number = 10, index = 1, arr = [5, 10, 15, 20, 25]
+// // const numbers = [5, 10, 15, 20, 25]; //исходный массив
+// // 1) number = 5, index = 0, arr = [5, 10, 15, 20, 25] //при первой итерации
+// // 2) number = 10, index = 1, arr = [5, 10, 15, 20, 25] // при второй итерации
 // // 3) number = 15, index = 2, arr = [5, 10, 15, 20, 25]
 // // 4) number = 20, index = 3, arr = [5, 10, 15, 20, 25]
 // // 5) number = 25, index = 4, arr = [5, 10, 15, 20, 25]
 
-// function logElement(number, idx, arr) {
-//   console.log(`Індекс ${index}, значення ${number}`);
+// function logElement(number, idx, arr) { //функция принимает три аргумента(элемент массива, индекс, и массив)
+//   console.log(`Індекс ${index}, значення ${number}`);//выводит порядковый номер и элемент массива
 // }
 
 // function showElement(number, idx, arr) {
-//   console.log(`значення ${element}`);
+//   console.log(`значення ${element}`); //выводит элемент массива
 // }
 
 // Під капотом працює цикл for
@@ -34,19 +34,20 @@
 //
 // }
 
-// function processCall(recipient, onAvailable, onNotAvailable) {
+//основная функция(сделать звонок), кому звоним и что сделать
+// function processCall(recipient, onAvailable, onNotAvailable) {//функция с тремя аргументами: абонент и два колбэка
 // // Имитируем доступность абонента случайным числом
 // const isRecipientAvailable = Math.random() > 0.5;
 
-// if (!isRecipientAvailable) {
-// onNotAvailable(recipient);
+// if (!isRecipientAvailable) { //если абонент занят
+// onNotAvailable(recipient); //запускаем солбэк функцию
 // return;
 // }
 
-// onAvailable(recipient);
+// onAvailable(recipient); //иначе абонент свободен
 // }
 
-// function takeCall(name) {
+// function takeCall(name) { //функция принимает имя и выводит в консоль фразу
 // console.log(`Соединяем с ${name}, ожидайте...`);
 // // Логика принятия звонка
 // }
@@ -61,8 +62,8 @@
 // // Логика записи голограммы
 // }
 
-// processCall("Манго", takeCall, activateAnsweringMachine);
-// processCall("Поли", takeCall, leaveHoloMessage);
+// processCall("Манго", takeCall, activateAnsweringMachine); //запускаем функцию звонка абоненту и записываем на автоответчик
+// processCall("Поли", takeCall, leaveHoloMessage);//запускаем функцию звонка абоненту и записываем голограму
 
 // # Модуль 4. Занятие 7. Коллбеки. Стрелочные функции. forEach
 
@@ -97,23 +98,23 @@
 // 2) Навчити нашу ф-ю працювати з callback
 // 3) callback має вміти приймати обєкт товара
 
-// createProduct({ name: "🍎", price: 30, quantity: 3 }, logProduct);
+// createProduct({ name: "🍎", price: 30, quantity: 3 }, logProduct);//принимает обьект продукта и выводит инфрмацию о нем
 // createProduct({ name: "🍋", price: 20, quantity: 5 }, logTotalPrice);
 
-// function createProduct(product, callback) {
-//   const id = Date.now();
-//   const newProduct = { ...product, id };
-//   //   product.id = id;
-//   callback(newProduct);
+// function createProduct(product, callback) {//функция, которая принимает два аргумента
+//   const id = Date.now();//сгенерировали id
+//   const newProduct = { ...product, id }; //создали новый путем копирования старого и добавили id (чистая функция )
+//   //   product.id = id;//можно и так записать, но эта запись меняет исходный обьект(не чистая функция)
+//   callback(newProduct);//запускаем callback(передаем как аргумент)
 //   // callback = logTotalPrice
 //   // logTotalPrice(newProduct);
 // }
 
-// function logProduct(item) {
+// function logProduct(item) {//первый  callback выводит информацию о продукте в консоль
 //   console.log(item);
 // }
 
-// function logTotalPrice(item) {
+// function logTotalPrice(item) { //второй  callback считает сумму
 //   console.log(item.price * item.quantity);
 //   return item.price * item.quantity;
 // }
@@ -296,32 +297,32 @@
 // Выполните рефакторинг кода используя стрелочные функции.
 
 // ```js
-// function each(array, callback) {
-//   const newArray = [];
-//   for (let el of array) {
-//     const result = callback(el);
-//     newArray.push(result);
+// function each(array, callback) { //принимает массив и callback
+//   const newArray = [];//создаем новый массив
+//   for (let el of array) { //перебираем массив
+//     const result = callback(el);//вызываем callback и присваеваем константу
+//     newArray.push(result); //добавляем в массив
 //   }
-//   return newArray;
+//   return newArray;//возвращаем новый массив
 // }
 
 // console.log(
-//   each([64, 49, 36, 25, 16], function (value) {
+//   each([64, 49, 36, 25, 16], function (value) {//принимаем массив и каждый элемент умножаем на 2
 //     return value * 2;
 //   })
 // );
 // console.log(
-//   each([64, 49, 36, 25, 16], function (value) {
+//   each([64, 49, 36, 25, 16], function (value) {//принимаем массив и от каждого элемента отнимаем 10
 //     return value - 10;
 //   })
 // );
 // console.log(
-//   each([64, 49, 36, 25, 16], function (value) {
+//   each([64, 49, 36, 25, 16], function (value) { //принимаем массив получаем квадратный корнь каждого элемента
 //     return Math.sqrt(value);
 //   })
 // );
 // console.log(
-//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {//принимаем массив и округляем каждый элемент
 //     return Math.ceil(value);
 //   }),
 // );
@@ -359,23 +360,25 @@
 // Выполните рефакторинг кода используя метод `forEach` и стрелочные функции.
 
 // ```js
-// function printContactsInfo({ names, phones }) {
-//   const nameList = names.split(",");
-//   const phoneList = phones.split(",");
-//   for (let i = 0; i < nameList.length; i += 1) {
-//     console.log(`${nameList[i]}: ${phoneList[i]}`);
+// function printContactsInfo({ names, phones }) { //имеем обьект с именами и телефонами
+//   const nameList = names.split(","); //split разбиваем имена
+//   const phoneList = phones.split(",");//split разбиваем телефоны
+//   for (let i = 0; i < nameList.length; i += 1) { //перебираем
+//     console.log(`${nameList[i]}: ${phoneList[i]}`); // и выводим в консоль комбинацию имени и тел
 //   }
 // }
 
+ // Выполним рефакторинг кода используя метод `forEach
+
 // function printContactsInfo({ names, phones }) {
-//   const nameList = names.split(",");
-//   const phoneList = phones.split(",");
-//   nameList.forEach(function (name, index) {
-//     console.log(`${name}: ${phoneList[index]}`);
+//   const nameList = names.split(",");// получим массив имен
+//   const phoneList = phones.split(",");// получим массив телефонов
+//   nameList.forEach(function (name, index) { //перебираем
+//     console.log(`${name}: ${phoneList[index]}`); // и выводим в консоль комбинацию имени и тел
 //   });
 // }
 
-// printContactsInfo({
+// printContactsInfo({ //выводим имя и телефон
 //   names: "Jacob,William,Solomon,Artemis",
 //   phones: "89001234567,89001112233,890055566377,890055566300",
 // });
