@@ -404,10 +404,11 @@
 
 //////////////////////////////////// lesson 2 ////////////////////////////////////////////////
 
+//разберем метод .filter
 // const allCourses = ['HTML', 'CSS', 'HTML','JavaScript', 'CSS', 'React', 'NodeJS', 'SQL', 'Python'];
 
-// const uniqueCourses = allCourses.filter(
-//   (course, index, array) => array.indexOf(course) === index
+// const uniqueCourses = allCourses.filter(//проверяем каждый элемент на соответствие условию
+//   (course, index, array) => array.indexOf(course) === index //если индекс совпадает, добавляем в новый массив
 // );
 // 1) course = HTML, index = 0, array = ['HTML', 'CSS', 'HTML','JavaScript', 'CSS', 'React', 'NodeJS', 'SQL', 'Python'] => 0 === 0 => ['HTML']
 // 2) course = CSS, index = 1, array = ['HTML', 'CSS', 'HTML','JavaScript', 'CSS', 'React', 'NodeJS', 'SQL', 'Python'] => 1 === 1 => ['HTML','CSS]
@@ -415,10 +416,10 @@
 // 4) course = JavaScript, index = 3, array = ['HTML', 'CSS', 'HTML','JavaScript', 'CSS', 'React', 'NodeJS', 'SQL', 'Python'] => 3 === 3 => ['HTML','CSS','JavaScript']
 // 5) course = CSS, index = 4, array = ['HTML', 'CSS', 'HTML','JavaScript', 'CSS', 'React', 'NodeJS', 'SQL', 'Python'] => 1 === 4 => ['HTML','CSS','JavaScript']
 
-// const LOW_SCORE = 15;
-// const HIGH_SCORE = 70;
+// const LOW_SCORE = 15; //минимальный бал
+// const HIGH_SCORE = 70; //максимальный балл
 
-// const students = [
+// const students = [ //обьекты  5 студентов
 //   { name: 'Bob', score: 45 },
 //   { name: 'Alice', score: 25 },
 //   { name: 'John', score: 60 },
@@ -426,10 +427,11 @@
 //   { name: 'Mary', score: 90 },
 // ]
 
-// // const average = students.filter(
-// //   (student) => student.score >= LOW_SCORE && student.score < HIGH_SCORE
+// // const average = students.filter( //перебираем массив находим студента средней успеваемости
+// //   (student) => student.score >= LOW_SCORE && student.score < HIGH_SCORE//если баллы > минимальных и < максимальных, добавляем
 // // );
 
+//запишем тоже самое используя деструктуризацию
 // const average = students.filter(
 //   ({score}) => score >= LOW_SCORE && score < HIGH_SCORE
 // );
@@ -440,6 +442,8 @@
 //     newArray.push(student)
 //   }
 // }
+
+////// метод .reduce ///////
 
 // const tweets = [
 //   { id: "000", likes: 5, tags: ["js", "nodejs"] },
@@ -558,29 +562,30 @@ const cars = [
 
 // Пусть функция `getModels` возвращает массив моделей (поле model) всех
 // автомобилей.
-
 // ```js
 
-// function getModels(cars) {
-//   return cars.map(function ({ model }) {
-//     return model;
+//обычная ф-ция
+// function getModels(cars) { //ф-ция принимает массив с машинами
+//   return cars.map(function ({ model }) {//функция принимает элемент массива model
+//     return model;//выведи массив с моделями автомобилей
 //   });
 // }
 
-// function getModels(cars) {
-//   return cars.map(({ model }) => model);
+// function getModels(cars) { //стрелочная ф-ция, которая принимает обьект
+//   return cars.map(({ model }) => model);//при помощи деструктуризации вывягивает модель машины и её возвращает
 // }
 
+//финальная стрелочная ф-ция
 // const getModels = (cars) => cars.map(({ model }) => model);
 
-// 1) car = {
+// 1) car = {  //при первой итерации перебирает обьект,
 //   make: "Honda",
 //   model: "CR-V",
 //   type: "suv",
 //   amount: 14,
 //   price: 24045,
 //   onSale: true,
-// } => model = "CR-V" => [].push("CR-V") => ["CR-V"]
+// } => model = "CR-V" => [].push("CR-V") => ["CR-V"]// выбирает model и методом .map добавляет в новый массив
 // 2) car = {
 //   make: "Honda",
 //   model: "Accord",
@@ -602,35 +607,40 @@ const cars = [
 
 // ```js
 
-// function makeCarsWithDiscount(cars, discount) {
-//   return cars.map(function (car) {
-//     return {
-//       ...car,
-//       price: car.price * (1 - discount), // 0.8 //0.6
+// function makeCarsWithDiscount(cars, discount) { //функция принимает два аргумента
+//   return cars.map(function (car) { //перебираем массив и приходит машина
+//     return {...car,  //верни такой же обьект(скопируй) все поля из обьекта
+//       price: car.price * (1 - discount), // замени поле price на новое значение (100% - скидка= 0.8 //0.6
 //     };
 //   });
 // }
 
-// const makeCarsWithDiscount = (cars, discount) =>
+// const makeCarsWithDiscount = (cars, discount) => //стрелочная ф-ция, которая принимает два аргумента
 //   cars.map((car) => ({ ...car, price: car.price * (1 - discount) }));
 
-// const discount20 = makeCarsWithDiscount(cars, 0.2);
+// const discount20 = makeCarsWithDiscount(cars, 0.2);//выводим рез-тат для дальнейшего использования
 
-// console.table(makeCarsWithDiscount(cars, 0.2));
-// console.table(makeCarsWithDiscount(cars, 0.4));
+// console.table(makeCarsWithDiscount(cars, 0.2));//при первом запуске скидка 20%
+// console.table(makeCarsWithDiscount(cars, 0.4));//при втором запуске скидка 40%
 // ```
 
-// ## Example 3 - Метод filter
+// ## Example 3 - Метод filter(находит все совпадения)
 
 // Пусть функция `filterByPrice` возвращает массив автомобилей цена которых меньше
 // чем значение параметра `threshold`.
 
 // ```js
-// const filterByPrice = (cars, threshold) =>
+//стрелочная ф-ция
+// const filterByPrice = (cars, threshold) => //ф-ция принимает массив и условие
+//   cars.filter((car) => car.price < threshold);//берем массив, применяем к ним фильтр
+//в фильтре передаем колбэк(получаем доступ к одной машине) в обьекте есть поле .price и выполняем условие
+
+//изменим стрелочную ф-цию (добавим деструктуризацию) т.к. работаем с ценой машины
+// const filterByPrice = (cars, threshold) => //ф-ция принимает массив и условие
 //   cars.filter(({ price }) => price < threshold);
 
-// console.table("cars", cars);
-// console.table(filterByPrice(cars, 30000));
+// console.table("cars", cars);//выводим оригинальный массив
+// console.table(filterByPrice(cars, 30000)); //выводим массив машин дешевле 30000
 // console.table(filterByPrice(cars, 25000));
 // ```
 
@@ -640,6 +650,9 @@ const cars = [
 // onSale которых true.
 
 // ```js
+// const getCarsWithDiscount = (cars) =>
+//   cars.filter((car) => car.onSale === true);
+
 // const getCarsWithDiscount = (cars) =>
 //   cars.filter(({ onSale }) => onSale === true);
 
@@ -656,35 +669,48 @@ const cars = [
 
 // ```js
 // const getCarsWithType = (cars, type) =>
-//   cars.filter(({ type: carType }) => carType === type);
+//   cars.filter((car) => car.type === type);
+
+//стрелочная ф-ция с деструктуризацией
+// const getCarsWithType = (cars, type) =>
+//   cars.filter(({ type: carType }) => carType === type);//перименовываем type: carType чито бе не было конфликта с параметром type
 
 // console.table(getCarsWithType(cars, "suv"));
 // console.table(getCarsWithType(cars, "sedan"));
 // ```
 
-// ## Example 6 - Метод find
+// ## Example 6 - Метод find(находит одно первое совпадение)
 
 // ```js
+//ищем машину по модели
 // const getCarByModel = (cars, model) => cars.find((car) => car.model === model);
 
-// console.log(getCarByModel(cars, "F-150"));
-// console.log(getCarByModel(cars, "CX-9"));
+// console.log(getCarByModel(cars, "F-150")); //при первом запуске ищем F-150
+// console.log(getCarByModel(cars, "CX-9"));//при втором запуске ищем CX-9
 
-// const getCarByPrice = (cars, minPrice, maxPrice) =>
+//ищем машину у которой price в диапазоне от minPrice до maxPrice
+// const getCarByPrice = (cars, minPrice, maxPrice) =>(функция принимает массив и два параметра)
 //   cars.filter((car) => car.price >= minPrice && car.price <= maxPrice);
 
-// console.table(getCarByPrice(cars, 25000, 30000));
+// console.table(getCarByPrice(cars, 25000, 30000)); //запуск ф-ции поиск машин в диапазоне от 25000 до 30000
 
-// const getCarByPriceAndModel = (cars, price, model) =>
+//ищем машину у которой price и model(используем .filter потому что мы не увепенны, что такая машина единственная)
+// const getCarByPriceAndModel = (cars, price, model) => (функция принимает массив, цену и модель)
 //   cars.filter((car) => car.price <= price && car.model === model);
 
-// console.table(getCarByPriceAndModel(cars, 25000, "CR-V"));
+// console.table(getCarByPriceAndModel(cars, 25000, "CR-V"));//запуск ф-ции поиск машины стоимостью 25000 и модель CR-V
 
+//ищем машину в диапазоне цены и марка машины из списка
+// const getCarByPriceAndModel = (cars, minPrice, maxPrice, models) =>
+//   cars.filter((car) => car.price <= maxPrice && car.price >= minPrice && models.includes(car.model));
+//
+//перепишем функцию используя деструктуризацию(вместо машины берем поле price и model)
 // const getCarByPriceAndModel = (cars, minPrice, maxPrice, models) =>
 //   cars.filter(
 //     ({ price, model }) =>
 //       price <= maxPrice && price >= minPrice && models.includes(model)
 //   );
+
 
 // console.table(
 //   getCarByPriceAndModel(cars, 20000, 30000, ["CR-V", "CX-9", "F-150", "CX-7"])
@@ -699,7 +725,10 @@ const cars = [
 
 // ```js
 // const sortByAscendingAmount = (cars) =>
-//   [...cars].sort((a, b) => a.amount - b.amount);
+// cars.sort((a, b) => a.amount - b.amount);(а и b элементы массива) сортируем в формате числа(a.amount - b.amount сортируем от меньшего к большему)
+
+// const sortByAscendingAmount = (cars) =>
+//   [...cars].sort((a, b) => a.amount - b.amount);//делаем копию массива([...cars]), сортируем
 
 // [{ amount: 2 }, { amount: 1 }, { amount: 3 }];
 
@@ -730,7 +759,7 @@ const cars = [
 
 // ```js
 // const sortByModel = (cars) =>
-//   [...cars].sort((a, b) => b.model.localeCompare(a.model));
+//   [...cars].sort((a, b) => b.model.localeCompare(a.model));//копируем массив применяем sort и сортируем в алфавитном порядке
 
 // console.table(sortByModel(cars));
 // ```
@@ -771,14 +800,18 @@ const cars = [
 //   ["React", "Next"],
 // ];
 
+//беру массив cars => беру у него .reduce (аккумулятор, обьект одной машины)=> аккумулятор + количество машин, значение аккумулятора
 // const getTotalAmount = (cars) => cars.reduce((acc, car) => acc + car.amount, 0);
 
-// console.log(tags.reduce((acc, tag) => acc.concat(tag), []));
+//перепишем с деструктуризацией
+// const getTotalAmount = (cars) => cars.reduce((acc, {amount}) => acc + amount, 0);
+
+// console.log(tags.reduce((acc, tag) => acc.concat(tag), [])); //метод .concat вернул новый массив, а []-аккумулятор нового массива
 // 1) [].push(["HTML", "JS"]) => ["HTML", "JS"]
 // 2) ["HTML", "JS"].push(["CSS", "TypeScript"]) => ["HTML", "JS","CSS", "TypeScript"]
 
-// 1) acc = 0 => amount = 14 => 0 + 14
-// 2) acc = 14 => amount = 2 => 14 + 2
+// 1) acc = 0 => amount = 14 => 0 + 14  //при первой иттерации аккумулятор + 14
+// 2) acc = 14 => amount = 2 => 14 + 2  // при второй аккумулятор уже = 14
 // return 16
 
 // console.log(getTotalAmount(cars));
@@ -805,3 +838,4 @@ const cars = [
 
 // console.table(getSortedCarsOnSale(cars));
 // ```
+
