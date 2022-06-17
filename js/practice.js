@@ -725,7 +725,7 @@ const cars = [
 
 // ```js
 // const sortByAscendingAmount = (cars) =>
-// cars.sort((a, b) => a.amount - b.amount);(а и b элементы массива) сортируем в формате числа(a.amount - b.amount сортируем от меньшего к большему)
+// cars.sort((a, b) => a.amount - b.amount);//(а и b элементы массива) сортируем в формате числа(a.amount - b.amount сортируем от меньшего к большему)
 
 // const sortByAscendingAmount = (cars) =>
 //   [...cars].sort((a, b) => a.amount - b.amount);//делаем копию массива([...cars]), сортируем
@@ -762,6 +762,43 @@ const cars = [
 //   [...cars].sort((a, b) => b.model.localeCompare(a.model));//копируем массив применяем sort и сортируем в алфавитном порядке
 
 // console.table(sortByModel(cars));
+
+//## автопроверка модуль 4  СОРТИРОВКА ОБЪЕКТОВ 41/48
+// const books = [
+//   {
+//     title: "The Last Kingdom",
+//     author: "Bernard Cornwell",
+//     rating: 8.38,
+//   },
+//   {
+//     title: "Beside Still Waters",
+//     author: "Robert Sheckley",
+//     rating: 8.51,
+//   },
+//   {
+//     title: "The Dream of a Ridiculous Man",
+//     author: "Fyodor Dostoevsky",
+//     rating: 7.75,
+//   },
+//   { title: "Redder Than Blood", author: "Tanith Lee", rating: 7.94 },
+//   { title: "Enemy of God", author: "Bernard Cornwell", rating: 8.67 },
+// ];
+
+//массив книг отсортированный по имени автора в алфавитном порядке.
+// const sortedByAuthorName = books => [...books].sort((firstAuthorName, secondAuthorName) => firstAuthorName.author.localeCompare(secondAuthorName.author));
+//в обратном алфавитном порядке
+// const sortedByReversedAuthorName = books => [...books].sort((firstAuthorName, secondAuthorName) => secondAuthorName.author.localeCompare(firstAuthorName.author));
+//массив книг отсортированный по возрастанию рейтинга
+// const sortedByAscendingRating = books => [...books].sort((firstRating, secondRating) => firstRating.rating - secondRating.rating);
+//массив книг отсортированный по убыванию рейтинга
+// const sortedByDescentingRating = books => [...books].sort((firstRating, secondRating) => secondRating.rating - firstRating.rating);
+
+// console.log(sortedByAuthorName);
+// console.table(sortedByAuthorName(books));
+// console.table(sortedByReversedAuthorName(books));
+// console.table(sortedByAscendingRating(books));
+// console.table(sortedByDescentingRating(books));
+
 // ```
 
 // ## Example 10 - Метод reduce
@@ -821,9 +858,15 @@ const cars = [
 
 // Пусть функция `getAvailableCarNames` возвращает массив моделей автомобилей, но
 // только тех, которые сейчас на распродаже.
+//1)фильтруем машины со скидкой
+//2)сортируем по алфавиту
 
 // ```js
 // const getModelsOnSale = cars => {};
+
+
+// const getModelsOnSale = (cars) => cars.filter(({ onSale }) => onSale) //возвращает массив автомобилей свойство onSale которых true  
+// .sort((a, b) => a.make.localeCompare(b.make));//сортируем по алфавиту
 
 // console.table(getModelsOnSale(cars));
 // ```
