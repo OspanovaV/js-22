@@ -34,7 +34,7 @@
 //     },
 // };
 
-// user.showTag();
+// user.showTag();//слева от функции стоит обьект user который вызывает в контексте этого обьекта(this будет ссылаться на user)
 
 /*
  * Вызов без контекста
@@ -64,10 +64,10 @@
 //     tag: 'Mango',
 // };
 
-// user.showUserTag = showTag;
+// user.showUserTag = showTag;//на свойстве user создал медод.showUserTag и записал туда ссыдку на оригинальрую функцию showTag
 // console.log('user', user);
 
-// user.showUserTag();
+// user.showUserTag();//вызов метода  .showUserTag в контексте user.Здесь определяем значение this
 
 /*
  * Вызов без контекста, но объявлена как метод объекта.
@@ -99,13 +99,19 @@
 //     },
 // };
 
+// user.showTag(); //результат вызова этой ф-ции //showTag -> this{ tag: 'Mango',showTag: f} и //showTag -> this.tag Mango
+
+// const xyz = user.showTag;//записывается ссылка на оригинальную функцию
+// xyz(); // здесь она вызывается без контектекста и результат вызова этой функции this undefined
+
+
 // const invokeAction = function (action) {
 //     console.log(action);
 
-//     action();
+//     action();//тут вызывается без контекста и рез-тат будет this undefined
 // };
 
-// invokeAction(user.showTag);
+// invokeAction(user.showTag);//вызываем и передаем ссылку на метод.showTag
 
 /*
  * Тренируемся 1
@@ -115,7 +121,7 @@
 //     console.log('fn -> this', this);
 // };
 
-// fn(); // Какой this ???
+// fn(); // Какой this ??? //this undefined
 
 /*
  * Тренируемся 2
@@ -131,13 +137,13 @@
 //     },
 // };
 
-// book.showThis(); // Какой this ???
+// book.showThis(); // Какой this ???//будет обьект book //showTitle -> this.title
 
 // const outerShowThis = book.showThis;
-// outerShowThis(); // Какой this ???
+// outerShowThis(); // Какой this ???  //this undefined
 
 // const outerShowTitle = book.showTitle;
-// outerShowTitle(); // Какой this ???
+// outerShowTitle(); // Какой this ???//this undefine
 
 /*
  * Тренируемся 3
@@ -149,7 +155,7 @@
 //         // this.color = color;
 //     };
 
-//     // changeColor(); // Какой this ???
+//     // changeColor(); // Какой this ???//this undefine (потому что нету обьекта)
 
 //     const sweater = {
 //         color: 'teal',
@@ -157,14 +163,14 @@
 
 //     sweater.updateColor = changeColor;
 
-//     // sweater.updateColor('red'); // Какой this ???
+//     // sweater.updateColor('red'); // Какой this ???//this sweater (ссылка на обьект)
 
 //     return sweater.updateColor;
 // };
 
 // const swapColor = makeChangeColor();
 
-// swapColor('blue'); // Какой this ???
+// swapColor('blue'); // Какой this ???//this undefine (потому что нету в контексте обьекта)
 
 /*
  * Тренируемся 4
@@ -179,7 +185,7 @@
 // };
 
 // const updateColor = makeChangeColor();
-// updateColor('yellow'); // Какой this ???
+// updateColor('yellow'); // Какой this ???//this undefine (потому что updateColor не метод обьекта)
 
 // const hat = {
 //     color: 'blue',
@@ -208,5 +214,5 @@ const updateCounter = function (value, operation) {
     operation(value);
 };
 
-updateCounter(10, counter.increment);
-updateCounter(5, counter.decrement);
+updateCounter(10, counter.increment);//this undefined//при передаче метода обьекта, контекст не сохраняется(нету в контексте обьекта)
+updateCounter(5, counter.decrement);//this undefined//при передаче метода обьекта, контекст не сохраняется(нету в контексте обьекта)
