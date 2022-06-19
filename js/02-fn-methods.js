@@ -1,5 +1,6 @@
 /*
- * call и apply
+ * call - метод.call позволяет взять любую произвольную ф-цию и принудительно вызвать один раз в контексте любого выбранного обьекта 
+и apply - позволяет делать тоже самое только синтаксис передачи аргументов метода записываем в []
  */
 // const showThis = function (a, b, arr) {
 //     console.log(a, b, arr);
@@ -12,7 +13,8 @@
 //     a: 5,
 //     b: 10,
 // };
-
+//метод.call позволяет взять любую ф-цию и принудительно вызвать один раз в контексте обьекта objA
+// и можно еще задать множество различных аргументов
 // showThis.call(objA, 5, 1, [100, 200, 300]);
 // showThis.apply(objA, [5, 1, [100, 200, 300]]);
 
@@ -26,16 +28,17 @@
 
 // showThis();
 
+//есть одна функция и мы можем произвольное количество обьектов со свойством color изменить 
 const changeColor = function (color) {
     console.log('changeColor -> this', this);
-    this.color = color;
+    this.color = color;//обьекту присваиваем  свойство color, которое сможем изменять 
 };
 
 const hat = {
     color: 'black',
 };
 
-// changeColor.call(hat, 'orange');
+// changeColor.call(hat, 'orange');//вызываем в контексте обьекта hat и присваиваем аргумент 'orange'
 // console.log(hat);
 
 const sweater = {
@@ -46,13 +49,13 @@ const sweater = {
 // console.log(sweater);
 
 /*
- * bind
+ * bind -делает копию функции с привязанным контекстом
  */
 
-const changeHatColor = changeColor.bind(hat);
+const changeHatColor = changeColor.bind(hat); //делаем копию функции с привязанным обьектом hat
 const changeSweaterColor = changeColor.bind(sweater);
 
-// changeHatColor('yellow');
+// changeHatColor('yellow');//вызываем функцию и присваиваем аргумент
 // console.log(hat);
 
 // changeSweaterColor('red');
