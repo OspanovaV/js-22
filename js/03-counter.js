@@ -1,25 +1,26 @@
+//калькулятор
 const counter = {
     value: 0,
     increment() {
         console.log('increment -> this', this);
-        this.value += 1;
+        this.value += 1;//увеличить на 1
     },
     decrement() {
         console.log('decrement -> this', this);
-        this.value -= 1;
+        this.value -= 1;//уменьшить на 1
     },
 };
 
-const decrementBtn = document.querySelector('.js-decrement');
+const decrementBtn = document.querySelector('.js-decrement');//ссылка на кнопку .js-decrement
 const incrementBtn = document.querySelector('.js-increment');
-const valueEl = document.querySelector('.js-value');
+const valueEl = document.querySelector('.js-value');// ссылка на абзац js-value
 
-decrementBtn.addEventListener('click', function () {
+decrementBtn.addEventListener('click', function () {//передаем событие click и ф-цию которая будет вызвана при наступлении этого события
     console.log('Кликнули на декремент');
 
-    counter.decrement();
+    counter.decrement();//вызываем в контексте обьекта counter(this будет ссылаться на counter
     console.log(counter);
-    valueEl.textContent = counter.value;
+    valueEl.textContent = counter.value;//обращаемся к свойству и присваиваем значение value
 });
 
 incrementBtn.addEventListener('click', function () {
