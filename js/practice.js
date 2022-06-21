@@ -1,7 +1,7 @@
 // // const user = {
 // //   name: "John",
 // //   age: 30,
-// //   // sayHello() {//это ключ обьекта сокращенный вариант
+// //   // sayHello() {//это ключ обьекта сокращенный вариант(метод обьекта)
 // //   //   console.log(`Hello, my name is ${this.name}`);
 // //   // },
 // //   sayHello: function () { //это полная запись ключа
@@ -39,7 +39,7 @@
 
 // // // showThis(); // window | undefined
 
-// // const bindShowThis = showThis.bind(user);
+// // const bindShowThis = showThis.bind(user);//присваиваем контекст для user
 // // bindShowThis();
 
 // // // console.log("objA", objA.logCtx); // [Function: logCtx]
@@ -62,33 +62,35 @@
 
 // // makeMessage(bindedCallback); // Буде помилка у виклику функції
 
-// // const somePeople = {
+/*
+* метод bind написанный руками для собеседования
+/*
+
+// // const somePeople = {//обьект
 // //   name: "Serhii",
 // //   prof: "hronometr",
 // // };
 
-// // function helloMyFriend(args) {
+// // function helloMyFriend(args) {//глобальная функция
 // //   console.log(`hello, ${this.name} ` + args);
 // // }
 
-// // const myBind = function (fn) {
-// //   // this
-// //   const context = this;
-// //   return function (...args) {
-// //     // this
-// //     return fn.apply(context, args);
+// //  пишем метод bind  руками(кастомный метод bind)
+// // const myBind = function (fn) {//еще функция, которая принимает коллбэк fn 
+// //   const context = this; //переменная записывается в this(это this первой функции, чтобы не было конфликта this)
+// //   return function (...args) { //возвращает функцию с аргументами
+// //   return fn.apply(context, args);//я беру контекст функции(context) и с ним буду вызывать коллбэк при помощи метода.apply
 // //   };
 // // };
-
 // // Object.prototype.myBinsProto = myBind;
 
-// // const tesMySelfBind = somePeople.myBinsProto(helloMyFriend);
+// // const tesMySelfBind = somePeople.myBinsProto(helloMyFriend);//я беру контекст 
 // // tesMySelfBind(", my dear friend");
 
-// // const showThis = () => {
-// //   console.log(this); // window
-// // };
 
+// // const showThis = () => {
+// //   console.log(this); // получим window(обьект который характеризует наш браузер)
+// // };
 // // showThis();
 
 // // # Модуль 5. Занятие 9. Контекст вызова функции и this
@@ -108,8 +110,8 @@
 // //     { name: "Ruby", price: 800, quantity: 2 },
 // //   ],
 // //   calcTotalPrice(stoneName) {
-// //     const stone = this.stones.find(({ name }) => name === stoneName);
-// //     return stone.price * stone.quantity;
+// //     const stone = this.stones.find(({ name }) => name === stoneName);//через контекст обратились к массиву, используя метод через имя нашли обьект
+// //     return stone.price * stone.quantity;//и когда мы его нашли перемножаем цену на количество
 // //   },
 // // };
 
@@ -124,21 +126,21 @@
 // // Выполните рефакторинг методов объекта `phonebook` чтобы код заработал.
 
 // // ```js
-// // const phonebook = {
-// //   contacts: [],
-// //   add(contact) {
-// //     const newContact = {
-// //       list: "default",
-// //       ...contact,
-// //       id: this.generateId(),
-// //       createdAt: this.getDate(),
+// // const phonebook = {//это обьект телефонная книга
+// //   contacts: [], //массив. поле контакты
+// //   add(contact) {//метод добавить контакт
+// //     const newContact = {//создается контакт
+// //       list: "default",//куда записывается название списка куда человек попадает
+// //       ...contact,  //копируется вся информация о пользователе
+// //       id: this.generateId(), //генерируется id
+// //       createdAt: this.getDate(), //записываем дату создания контакта
 // //     };
-// //     this.contacts.push(newContact);
+// //     this.contacts.push(newContact); //и этот созданный обьект(контакт) пушим в массив
 // //   },
-// //   generateId() {
-// //     return "_" + Math.random().toString(36).substr(2, 9);
+// //   generateId() { //метод генерирует уникальный идентификатор (id)
+// //     return "_" + Math.random().toString(36).substr(2, 9);//генерируем рандомное число, конвертируем в 36разрядное и обрезаем
 // //   },
-// //   getDate() {
+// //   getDate() { //метод фиксирует в какое время создан контакт
 // //     return Date.now();
 // //   },
 // // };
@@ -169,14 +171,15 @@
 // // - `mult()` - перемножает сохранённые значения и возвращает результат.
 
 // // ```js
-// // const calculator = {
-// //   read(a, b) {
-// //     this.a = a; // calculator.a = a
+// // const calculator = {//создаем обьект 
+// //   read(a, b) { //метод принимает два значения у клиента
+// //     this.a = a; // calculator.a = a в обьекте calculator создаем еще ключ а
 // //     this.b = b; // calculator.b = b
 // //   },
 
-// //   // read(...args) {
-// //   //   this.numbers = args;
+// //   //а в этом методе мы не знаем сколько будет чисел
+// //   // read(...args) { //метод который принимает все аргументы (неизвестное количество)
+// //   //   this.numbers = args; 
 // //   // },
 
 // //   add() {
