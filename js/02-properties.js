@@ -19,10 +19,10 @@ heroTitleEl.textContent = 'Я сладкий пирожочек!';
 
 /*
  * Атрибуты
- * - get(имя-атрибута)
- * - set(имя-атрибута)
- * - remove(имя-атрибута)
- * - has(имя-атрибута)
+ * - get(имя-атрибута) //получает значение атрибута
+ * - set(имя-атрибута) //устанавливает атрибут
+ * - remove(имя-атрибута) //удалить артибут
+ * - has(имя-атрибута) //проверить есть ли этот атрибут
  */
 
 // console.log(imageEl.getAttribute('src'));
@@ -35,3 +35,8 @@ heroTitleEl.textContent = 'Я сладкий пирожочек!';
 const actions = document.querySelectorAll('.js-actions button');
 console.log(actions);
 console.log(actions[2].dataset.action);
+
+magicBtn.addEventListener('click', () => { //используем вашу магическую кнопку, вешаем на неё клик что-то повводить и почитать
+  const inputEl = document.querySelector('.js-input'); //получим ссылку на инпут
+  console.log(inputEl.velue); //у инпута его значение хранится в свойстве .velue
+})
