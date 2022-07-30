@@ -15,8 +15,10 @@
   - Bootstrap для CSS
   - Bootstrap Native для JS
 - Встроенный объект Date
+
   - Создание
   - Разница времени
   - Date.now() и new Date().getTime()
   - [Библиотека date-fns](https://date-fns.org/)
+
 - Мастерская: таймер
