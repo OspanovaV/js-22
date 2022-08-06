@@ -1,4 +1,6 @@
 /*
+ *Промис-обещание может быть выполнено с каким-то результатом либо отклонено с ошибкой
+ промис асинхронный
  * Создание промиса
  *  - Класс Promise
  *  - resolve
@@ -6,19 +8,31 @@
  *  - Promise.prototype.then(onResolve, onReject)
  */
 
-const promise = new Promise((resolve, reject) => {
-  const canFulfill = Math.random() > 0.5;
+//  //new Promise создаёт обещание всегда есть два параметра: resolve(успешно выполнено), reject(выполнено с ошибкой) 
+// const promise = new Promise((resolve, reject) => {
+//   const canFulfill = Math.random() > 0.5; //генетим случайное число и сравниваем  > 0.5
 
-  setTimeout(() => {
-    if (canFulfill) {
-      resolve('Промис выполнился успешно, с результатом (исполнен, fulfilled)');
-    }
+//   setTimeout(() => {
+//     if (canFulfill) { //если true то промис выполнен успешно
+//       resolve('Промис выполнился успешно, с результатом (исполнен, fulfilled)');
+//     }
 
-    reject('Промис выполнился с ошибкой (отклонён, rejected)');
-  }, 1000);
-});
+//     reject('Промис выполнился с ошибкой (отклонён, rejected)'); //иначе выполнен с ошибкой
+//   }, 1000);
+// });
 
-// promise.then(onFulfilled, onRejected);
+// у промиса на прототипе есть метод then (если этот промис выполнится успешно тогда сделай
+//вот эту функцию: promise.then(    это планировка отложенной функции она выполнится асинхронно
+//                   result => {
+//                    console.log(`✅ ${result}`); успешно выполнен
+//                   },
+//                   error => {
+//                    console.log(`❌ ${error}`);  выполнен с ошибкой
+//                   }
+//                 );
+
+//сделаем тоже самое, но вынесем параметры функции в отдельные функции
+promise.then(onFulfilled, onRejected); //функция с двумя аргументами
 
 function onFulfilled(result) {
   console.log('onFulfilled -> onFulfilled');
@@ -32,12 +46,27 @@ function onRejected(error) {
 
 /*
  * Цепочки промисов (chaining)
- * Promise.prototype.catch(error)
- * Promise.prototype.finally()
+.then на своё место врзвращает промис этот промис выполняется успешно с тем значением, которое мы ретёрним
+ * Promise.prototype.catch(error) //применяем .catch будем отлавливать ощибки
+ * Promise.prototype.finally() //в самом конце функция без аргументов выполняется в любом  
  */
 
+//new Promise создаёт обещание всегда есть два параметра: resolve(успешно выполнено), reject(выполнено с ошибкой) 
+const promise = new Promise((resolve, reject) => {
+  const canFulfill = Math.random() > 0.5; //генетим случайное число и сравниваем  > 0.5
+
+  setTimeout(() => {
+    if (canFulfill) { //если true то промис выполнен успешно
+      resolve('Промис выполнился успешно, с результатом (исполнен, fulfilled)');
+    }
+
+    reject('Промис выполнился с ошибкой (отклонён, rejected)'); //иначе выполнен с ошибкой
+  }, 1000);
+});
+
+//применяем .catch будем отлавливать ощибки
 promise
-  .then(onFulfilled)
+  .then(onFulfilled)//передаём обработку только успешного выполнения промиса
   .then(x => {
     console.log(x);
 
@@ -46,5 +75,11 @@ promise
   .then(y => {
     console.log(y);
   })
-  .catch(error => console.log(error))
-  .finally(() => console.log('Я буду выполнен в любом случае'));
+  .catch(error => console.log(error))//ловим ошибку один раз в конце цепочки
+  .finally(() => console.log('Я буду выполнен в любом случае'));//в самом конце функция без аргументов выполняется в любом случае
+
+  //финальная логика (базовый синтаксис):
+  // 1. конструктор промис (new Promise) создаёт новый промис
+  // 2. функция setTimeout() контролирует будет ли он выполняться успешно или с ошибкой
+  // 3. то что мы передаём в resolve или в reject мы получим внутри .then, .catch и .finally (используем promise 
+  //    добавляем .then(onFulfilled)- если успешно) и .catch - если с ошибкой и добавить .finally - выполнить в любом случае
