@@ -1,4 +1,4 @@
-const BASE_URL = 'https://pokeapi.co/api/v2';
+const BASE_URL = 'https://pokeapi.co/api/v2';//базовый URL нашего проекта
 
 function fetchPokemon(pokemonId) {
   return fetch(`${BASE_URL}/pokemon/${pokemonId}`).then(response =>
