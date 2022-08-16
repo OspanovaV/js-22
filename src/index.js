@@ -25,10 +25,10 @@ const loadMoreBtn = new LoadMoreBtn({
   selector: '[data-action="load-more"]',
   hidden: true,
 });
-const newsApiService = new NewsApiService();
+const newsApiService = new NewsApiService();//новый запрос
 
 refs.searchForm.addEventListener('submit', onSearch);
-loadMoreBtn.refs.button.addEventListener('click', fetchArticles);
+loadMoreBtn.refs.button.addEventListener('click', fetchArticles);//
 
 function onSearch(e) {
   e.preventDefault();
@@ -40,7 +40,7 @@ function onSearch(e) {
   }
 
   loadMoreBtn.show();
-  newsApiService.resetPage();
+  newsApiService.resetPage();//при новом запросе(сабмите) сбрасываем на page1
   clearArticlesContainer();
   fetchArticles();
 }

@@ -8,7 +8,7 @@ const options = {
 
 export default class NewsApiService {
   constructor() {
-    this.searchQuery = '';
+    this.searchQuery = '';//(свойство класса)когда делаем экземпляр тут будет постая строка
     this.page = 1;
   }
 
@@ -18,19 +18,19 @@ export default class NewsApiService {
     return fetch(url, options)
       .then(response => response.json())
       .then(({ articles }) => {
-        this.incrementPage();
+        this.incrementPage();//при успешном запросе для следующего запроса увеличиваем на 1 
         return articles;
       });
   }
 
-  incrementPage() {
+  incrementPage() { //увеличиваем страницу
     this.page += 1;
   }
 
-  resetPage() {
+  resetPage() { //сбрасываем страницу на 1 при новом запросе
     this.page = 1;
   }
-
+//get и set для чтения и изменения из внешнего кода значение свойств
   get query() {
     return this.searchQuery;
   }
