@@ -15,13 +15,14 @@
 import articlesTpl from './templates/articles.hbs';
 import './css/common.css';
 import NewsApiService from './js/news-service';
-import LoadMoreBtn from './js/components/load-more-btn';
+import LoadMoreBtn from './js/components/load-more-btn';//подключаем спинер загрузки
 
 const refs = {
   searchForm: document.querySelector('.js-search-form'),
   articlesContainer: document.querySelector('.js-articles-container'),
 };
-const loadMoreBtn = new LoadMoreBtn({
+//спинер загрузки
+const loadMoreBtn = new LoadMoreBtn({ //когда делаем экземпляр то вызываем constructor в файле load-more-btn.js передали hidden: true
   selector: '[data-action="load-more"]',
   hidden: true,
 });
@@ -33,30 +34,30 @@ loadMoreBtn.refs.button.addEventListener('click', fetchArticles);//
 function onSearch(e) {
   e.preventDefault();
 
-  newsApiService.query = e.currentTarget.elements.query.value;
+  newsApiService.query = e.currentTarget.elements.query.value;//записываем новый запрос поиска
 
-  if (newsApiService.query === '') {
-    return alert('Введи что-то нормальное');
+  if (newsApiService.query === '') {//если в поиске пусто
+    return alert('Введи что-то нормальное');//выведи сообщение
   }
 
-  loadMoreBtn.show();
+  loadMoreBtn.show(); //показать кнопку
   newsApiService.resetPage();//при новом запросе(сабмите) сбрасываем на page1
-  clearArticlesContainer();
-  fetchArticles();
+  clearArticlesContainer();//очищаем контейнер, когда делаем новый запрос(при сабмите)
+  fetchArticles();//отправляем новый запрос
 }
 
-function fetchArticles() {
-  loadMoreBtn.disable();
-  newsApiService.fetchArticles().then(articles => {
-    appendArticlesMarkup(articles);
-    loadMoreBtn.enable();
+function fetchArticles() { //при клике на loadMoreBtn
+  loadMoreBtn.disable();//скрываем кнопку
+  newsApiService.fetchArticles().then(articles => {//когда запрос успешный
+    appendArticlesMarkup(articles);//рендерим статьи
+    loadMoreBtn.enable();//делаем кнопку "загрузить больше" активной
   });
 }
-
-function appendArticlesMarkup(articles) {
-  refs.articlesContainer.insertAdjacentHTML('beforeend', articlesTpl(articles));
+//рендерим разметку
+function appendArticlesMarkup(articles) {//получает articles
+  refs.articlesContainer.insertAdjacentHTML('beforeend', articlesTpl(articles));//в контейнер вставляет результат вызова разметка шаблона
 }
-
+//функция очистки контейнера
 function clearArticlesContainer() {
   refs.articlesContainer.innerHTML = '';
 }

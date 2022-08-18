@@ -7,35 +7,35 @@ const options = {
 };
 
 export default class NewsApiService {
-  constructor() {
-    this.searchQuery = '';//(свойство класса)когда делаем экземпляр тут будет постая строка
-    this.page = 1;
+  constructor() { //.searchQuery меняется при сабмите формы
+    this.searchQuery = '';//(свойство класса)когда делаем экземпляр тут будет пустая строка
+    this.page = 1;//номер группы
   }
 
-  fetchArticles() {
+  fetchArticles() { //метод который забитает статьи
     const url = `${BASE_URL}/everything?q=${this.searchQuery}&language=en&pageSize=5&page=${this.page}`;
 
-    return fetch(url, options)
+    return fetch(url, options)//возвращает результат fetch это промис
       .then(response => response.json())
       .then(({ articles }) => {
         this.incrementPage();//при успешном запросе для следующего запроса увеличиваем на 1 
-        return articles;
+        return articles;// значение промиса из посдеднего.then (это статьи) 
       });
   }
 
-  incrementPage() { //увеличиваем страницу
+  incrementPage() { //увеличиваем группу ответов
     this.page += 1;
   }
 
-  resetPage() { //сбрасываем страницу на 1 при новом запросе
+  resetPage() { //сбрасываем группу в исходное состояние на 1 при новом запросе
     this.page = 1;
   }
-//get и set для чтения и изменения из внешнего кода значение свойств
-  get query() {
-    return this.searchQuery;
+//контролирует термин зпроса get и set для чтения и изменения из внешнего кода значение свойств
+  get query() { //получить
+    return this.searchQuery; 
   }
 
-  set query(newQuery) {
+  set query(newQuery) { //записать
     this.searchQuery = newQuery;
   }
 }
